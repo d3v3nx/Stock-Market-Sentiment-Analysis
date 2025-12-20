@@ -19,7 +19,7 @@ def fetch_news(api_key, query, from_date, to_date):
         "apiKey": api_key
     }
     response = requests.get(url, params=params)
-    print(response.json())
+    # print(response.json())
     articles = response.json()["articles"]
 
     news = [{
