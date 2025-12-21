@@ -8,3 +8,5 @@ nltk
 textblob
 requests
 jupyter
+streamlit
+python-dotenv

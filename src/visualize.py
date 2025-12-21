@@ -12,4 +12,5 @@ def plot_sentiment_vs_price(df):
     ax2.plot(df["Date"], df["sentiment"], color="orange", label="Sentiment")
 
     plt.title("Stock Price vs News Sentiment")
-    plt.show()
+    # plt.show()
+    return fig
