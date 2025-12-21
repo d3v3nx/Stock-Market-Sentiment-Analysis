@@ -9,6 +9,8 @@ def fetch_stock_data(ticker, start, end):
     return stock
 
 def fetch_news(api_key, query, from_date, to_date):
+    if not api_key:
+        raise ValueError("NEWS_API_KEY is missing")
     url = "https://newsapi.org/v2/everything"
     params = {
         "q": query,
@@ -19,8 +21,12 @@ def fetch_news(api_key, query, from_date, to_date):
         "apiKey": api_key
     }
     response = requests.get(url, params=params)
-    # print(response.json())
-    articles = response.json()["articles"]
+    data = response.json()
+
+    if data.get("status") != "ok":
+        raise Exception(f"NewsAPI error: {data.get('message')}")
+
+    articles = data.get("articles", [])
 
     news = [{
         "date": article["publishedAt"][:10],
